@@ -1,0 +1,58 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Actividad 1: Análisis de Datos en Técnicas de Reproducción Asistida",
+    "section": "",
+    "text": "Introducción\nEn el ámbito de las técnicas de reproducción asistida, la optimización de los resultados del tratamiento es esencial para aumentar las tasas de éxito y mejorar las probabilidades de gestación en pacientes con mal pronóstico, baja reserva ovárica o de edad igual o superior a 40 años. En este contexto, se lleva a cabo un protocolo de doble estimulación ovárica, con el objetivo de incrementar el número de óvulos y, por ende, obtener más embriones.\nEste estudio se centra en analizar un conjunto de datos que contiene información relevante sobre los pacientes sometidos a dicho protocolo, los tratamientos realizados y los resultados obtenidos, con especial atención en la blastulación. Tradicionalmente, este protocolo de doble estimulación se ha llevado a cabo utilizando antagonistas de GnRH para inhibir la descarga de LH y prevenir una ovulación tardía. Sin embargo, se ha observado que los gestágenos, una alternativa más económica y no inyectable, también pueden cumplir este propósito.\nEl objetivo principal de este análisis es realizar una exploración exhaustiva de los datos para identificar patrones, tendencias y posibles asociaciones entre las características de los pacientes, los tratamientos aplicados y los resultados de la blastulación. Para ello, se emplearán técnicas de estadística descriptiva, análisis de asociación y análisis multivariante, con el fin de proporcionar información útil.\nEn este documento, se detallará el proceso de preparación del conjunto de datos, el análisis realizado y las conclusiones obtenidas, con el objetivo de ofrecer una visión comprensiva y lo más rigurosa posible de los resultados obtenidos."
+  },
+  {
+    "objectID": "intro.html",
+    "href": "intro.html",
+    "title": "1  Introduction",
+    "section": "",
+    "text": "This is a book created from markdown and executable code.\nSee Knuth (1984) for additional discussion of literate programming.\n\n1 + 1\n\n[1] 2\n\n\n\n\n\n\nKnuth, Donald E. 1984. “Literate Programming.” Comput. J. 27 (2): 97–111. https://doi.org/10.1093/comjnl/27.2.97."
+  },
+  {
+    "objectID": "summary.html",
+    "href": "summary.html",
+    "title": "2  Summary",
+    "section": "",
+    "text": "In summary, this book has no content whatsoever.\n\n1 + 1\n\n[1] 2"
+  },
+  {
+    "objectID": "references.html",
+    "href": "references.html",
+    "title": "References",
+    "section": "",
+    "text": "Knuth, Donald E. 1984. “Literate Programming.” Comput.\nJ. 27 (2): 97–111. https://doi.org/10.1093/comjnl/27.2.97."
+  },
+  {
+    "objectID": "est_descriptiva.html",
+    "href": "est_descriptiva.html",
+    "title": "1  Estadística Descriptiva",
+    "section": "",
+    "text": "This is a book created from markdown and executable code.\nSeefor additional discussion of literate programming.\n\n\nCode\ny = 1\ny = + 1"
+  },
+  {
+    "objectID": "analisis_asoc.html",
+    "href": "analisis_asoc.html",
+    "title": "2  Análisis Asociativo",
+    "section": "",
+    "text": "In summary, this book has no content whatsoever.\n\n\nCode\nload(\"index.RData\")\ny = 1 + x"
+  },
+  {
+    "objectID": "analisis_multi.html",
+    "href": "analisis_multi.html",
+    "title": "3  Análisis Multivariante",
+    "section": "",
+    "text": "In summary, this book has no content whatsoever.\n\n\nCode\n1 + 1\n\n\n[1] 2"
+  },
+  {
+    "objectID": "index.html#conjunto-de-datos",
+    "href": "index.html#conjunto-de-datos",
+    "title": "Actividad 1: Análisis de Datos en Técnicas de Reproducción Asistida",
+    "section": "Conjunto de Datos",
+    "text": "Conjunto de Datos\nSe nos presenta un fichero que comprende los datos sobre 79 pacientes (60 Antagonistas + 19 Gestágenos) con un total de 21 variables las cuales se definen a continuación:\n\nComunes:\n\nEDAD: Edad de la paciente.\nAFC: Recuento de folículos antrales.\nAMH: Hormona Antimülleriana, marcador de reserva ovárica.\nFACTOR MAS: Presencia/ausencia de factor masculino.\nFACTOR FEM: Causa de esterilidad femenina.\nBMI: Índice de masa corporal.\n\n\n\n\nPrimera y segunda estimulación (hay una para cada estimulación):\n\nDIAS: Días de estimulación.\nDOSIS: Dosis administrada.\nHMG: Menotropina.\nNºOVO: Número de ovocitos.\nMII: Número de ovocitos maduros\nFERTILIZ: Fertilización\nBT AA - BB: Número de blastos de buena calidad.\nCONG: Sin información.\nFET: Sin información.\nBLASTUL (evento): Blastulación (llegada a blasto).\n\n\n\nTratamiento Externo\nAntes de importar el fichero en el entorno de RStudio he realizado ciertas modificaciones dentro del propio archivo .xlsx:\n\nModificado de los nombres de las variables con el propósito de optimizar su usabilidad en el entorno de programación. Para ello, he aplicado un criterio que implica la sustitución de espacios por guiones bajos, la eliminación de símbolos innecesarios y la inclusión de un identificador numérico en las variables relacionadas de estimulación, con el fin de diferenciarlas entre sí. Por ejemplo, la variable NºOVO de primera estimulación se convierte en N_OVO.1.\nEliminado de entradas en la variable DOSIS de ambas estimulaciones debido a tener un formato categórico en vez de numérico.\n\n\n\nImportación a Entorno\n\n\nCode\nx = 2"
+  }
+]
