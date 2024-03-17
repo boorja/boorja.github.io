@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.450">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Borja Pérez Herencia">
+
+<title>Análisis de Datos en Técnicas de Reproducción Asistida</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./est_descriptiva.html" rel="next">
+<link href="./umalogo.png" rel="icon" type="image/png">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="custom.css">
+</head>
+
+<body class="nav-sidebar floating">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./index.html">Introducción</a></li></ol></nav>
+      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+      </a>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<header id="title-block-header" class="quarto-title-block default page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-body">
+      <h1 class="title">Análisis de Datos en Técnicas de Reproducción Asistida</h1>
+                      </div>
+  </div>
+    
+  
+  <div class="quarto-title-meta">
+
+      <div>
+      <div class="quarto-title-meta-heading">Author</div>
+      <div class="quarto-title-meta-contents">
+               <p>Borja Pérez Herencia </p>
+            </div>
+    </div>
+      
+    
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
+      <a href="./index.html" class="sidebar-logo-link">
+      <img src="./umalogo.png" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
+      </a>
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Índice</a> 
+    </div>
+      </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Introducción</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./est_descriptiva.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Estadística Descriptiva</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./analisis_asoc.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Análisis Asociativo</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./analisis_multi.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Análisis Multivariante</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./conclusiones.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Conclusiones</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Contenidos</h2>
+   
+  <ul>
+  <li><a href="#introducción" id="toc-introducción" class="nav-link active" data-scroll-target="#introducción">Introducción</a>
+  <ul>
+  <li><a href="#conjunto-de-datos" id="toc-conjunto-de-datos" class="nav-link" data-scroll-target="#conjunto-de-datos">Conjunto de Datos</a>
+  <ul class="collapse">
+  <li><a href="#preparación-del-entorno" id="toc-preparación-del-entorno" class="nav-link" data-scroll-target="#preparación-del-entorno">Preparación del Entorno</a>
+  <ul class="collapse">
+  <li><a href="#tratamiento-externo" id="toc-tratamiento-externo" class="nav-link" data-scroll-target="#tratamiento-externo">Tratamiento Externo</a></li>
+  <li><a href="#importación" id="toc-importación" class="nav-link" data-scroll-target="#importación">Importación</a></li>
+  <li><a href="#tratamiento-interno" id="toc-tratamiento-interno" class="nav-link" data-scroll-target="#tratamiento-interno">Tratamiento Interno</a></li>
+  </ul></li>
+  </ul></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content quarto-banner-title-block" id="quarto-document-content">
+
+
+
+
+<div class="cell">
+<style type="text/css">
+.title {
+  font-size: 50px;
+  color: #002859;
+}
+</style>
+</div>
+<section id="introducción" class="level1 unnumbered">
+<h1 class="unnumbered">Introducción</h1>
+<p>En el ámbito de las técnicas de reproducción asistida, la optimización de los resultados del tratamiento es esencial para aumentar las tasas de éxito y mejorar las probabilidades de gestación en pacientes con mal pronóstico, baja reserva ovárica o de edad igual o superior a 40 años. En este contexto, se lleva a cabo un protocolo de doble estimulación ovárica, con el objetivo de incrementar el número de óvulos y, por ende, obtener más embriones.</p>
+<p>Este estudio se centra en analizar un conjunto de datos que contiene información relevante sobre los pacientes sometidos a dicho protocolo, los tratamientos realizados y los resultados obtenidos, con especial atención en la blastulación. Tradicionalmente, este protocolo de doble estimulación se ha llevado a cabo utilizando antagonistas de GnRH para inhibir la descarga de LH y prevenir una ovulación tardía. Sin embargo, se ha observado que los gestágenos, una alternativa más económica y no inyectable, también pueden cumplir este propósito.</p>
+<p>El objetivo principal de este análisis es realizar una exploración exhaustiva de los datos para identificar patrones, tendencias y posibles asociaciones entre las características de los pacientes, los tratamientos aplicados y los resultados de la blastulación. Para ello, se emplearán técnicas de estadística descriptiva, análisis de asociación y análisis multivariante, con el fin de proporcionar información útil.</p>
+<p>En este documento, se detallará el proceso de preparación del conjunto de datos, el análisis realizado y las conclusiones obtenidas, con el objetivo de ofrecer una visión comprensiva y lo más rigurosa posible de los resultados obtenidos.</p>
+<section id="conjunto-de-datos" class="level2">
+<h2 class="anchored" data-anchor-id="conjunto-de-datos">Conjunto de Datos</h2>
+<p>Se nos presenta un fichero que comprende los datos sobre 79 pacientes (60 Antagonistas + 19 Gestágenos) con un total de 26 variables las cuales se definen a continuación:</p>
+<ul>
+<li><p><strong>Comunes:</strong></p>
+<ul>
+<li><p><em>EDAD:</em> Edad de la paciente.</p></li>
+<li><p><em>AFC:</em> Recuento de folículos antrales.</p></li>
+<li><p><em>AMH:</em> Hormona Antimülleriana, marcador de reserva ovárica.</p></li>
+<li><p><em>FACTOR MAS:</em> Presencia/ausencia de factor masculino.</p></li>
+<li><p><em>FACTOR FEM:</em> Causa de esterilidad femenina.</p></li>
+<li><p><em>BMI:</em> Índice de masa corporal.</p></li>
+</ul></li>
+</ul>
+<!-- -->
+<ul>
+<li><p><strong>Primera y segunda estimulación</strong> (hay una para cada estimulación)<strong>:</strong></p>
+<ul>
+<li><p><em>DIAS:</em> Días de estimulación.</p></li>
+<li><p><em>DOSIS:</em> Dosis administrada.</p></li>
+<li><p><em>HMG:</em> Menotropina.</p></li>
+<li><p><em>NºOVO:</em> Número de ovocitos.</p></li>
+<li><p><em>MII:</em> Número de ovocitos maduros</p></li>
+<li><p><em>FERTILIZ:</em> Fertilización</p></li>
+<li><p><em>BT AA - BB:</em> Número de blastos de buena calidad.</p></li>
+<li><p><em>CONG:</em> Sin información.</p></li>
+<li><p><em>FET:</em> Sin información.</p></li>
+<li><p><em>BLASTUL</em> (<u>evento</u>): Blastulación (llegada a blasto).</p></li>
+</ul></li>
+</ul>
+<section id="preparación-del-entorno" class="level3">
+<h3 class="anchored" data-anchor-id="preparación-del-entorno">Preparación del Entorno</h3>
+<section id="tratamiento-externo" class="level4">
+<h4 class="anchored" data-anchor-id="tratamiento-externo">Tratamiento Externo</h4>
+<p>Antes de importar el fichero en el entorno de RStudio he realizado ciertas modificaciones dentro del propio archivo <code>.xlsx</code>:</p>
+<ul>
+<li><p>Modificado de los nombres de las variables con el propósito de optimizar su usabilidad en el entorno de programación. Para ello, he aplicado un criterio que implica la sustitución de espacios por guiones bajos, la eliminación de símbolos innecesarios y la inclusión de un identificador numérico en las variables relacionadas de estimulación, con el fin de diferenciarlas entre sí. Por ejemplo, la variable <em><code>NºOVO</code></em> de primera estimulación se convierte en <em><code>N_OVO.1</code></em>.</p></li>
+<li><p>Eliminado de entradas en la variable <em><code>DOSIS</code></em> de ambas estimulaciones debido a tener un formato categórico en vez de numérico.</p></li>
+</ul>
+</section>
+<section id="importación" class="level4">
+<h4 class="anchored" data-anchor-id="importación">Importación</h4>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"readxl"</span>)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"dplyr"</span>)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"MASS"</span>)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"plotly"</span>)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"zoo"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p>Se importa el archivo <code>.xlsx</code> usando la librería <code>readxl</code>. Dado que el archivo Excel tiene dos hojas, guardamos cada una de ellas en un conjunto diferente.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>antagonistas <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">"~/mineria_datos/ACTIVIDAD 1 - Borja/Actividad_1/ESTUDIO_Fert_MD.xlsx"</span>, <span class="at">sheet =</span> <span class="st">"ANTAGONISTAS"</span>)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>gestagenos <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">"~/mineria_datos/ACTIVIDAD 1 - Borja/Actividad_1/ESTUDIO_Fert_MD.xlsx"</span>, <span class="at">sheet =</span> <span class="st">"GESTAGENOS"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Posteriormente, estos dos conjuntos se fusionan en uno solo, generando simultáneamente una nueva variable (denominada <code>GRUPO</code>), en la cual se registra el nombre de la pestaña original a la que pertenecían. Esta variable indica el grupo de tratamiento correspondiente.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>antagonistas<span class="sc">$</span>GRUPO <span class="ot">&lt;-</span> <span class="st">"Antagonistas"</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>gestagenos<span class="sc">$</span>GRUPO <span class="ot">&lt;-</span> <span class="st">"Gestagenos"</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>datos <span class="ot">&lt;-</span> <span class="fu">rbind</span>(antagonistas, gestagenos)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="tratamiento-interno" class="level4">
+<h4 class="anchored" data-anchor-id="tratamiento-interno">Tratamiento Interno</h4>
+<p>Se realiza la conversión de variables categóricas a tipo factor y la recodificación de algunas de estas variables para agrupar datos y que los resultados estadísticos sean más precisos en el análisis posterior.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co">#CONVERSION A TIPO FACTOR</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>datos<span class="sc">$</span>FACTOR_MAS <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(datos<span class="sc">$</span>FACTOR_MAS)</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>datos<span class="sc">$</span>FACTOR_FEM <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(datos<span class="sc">$</span>FACTOR_FEM)</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>datos<span class="sc">$</span>BLASTUL<span class="fl">.1</span> <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(datos<span class="sc">$</span>BLASTUL<span class="fl">.1</span>)</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>datos<span class="sc">$</span>FET<span class="fl">.1</span> <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(datos<span class="sc">$</span>FET<span class="fl">.1</span>)</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>datos<span class="sc">$</span>BLASTUL<span class="fl">.2</span> <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(datos<span class="sc">$</span>BLASTUL<span class="fl">.2</span>)</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>datos<span class="sc">$</span>FET<span class="fl">.2</span> <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(datos<span class="sc">$</span>FET<span class="fl">.2</span>)</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>datos<span class="sc">$</span>GRUPO <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(datos<span class="sc">$</span>GRUPO)</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="co">#RECODIFICACION</span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>datos<span class="sc">$</span>FACTOR_MAS <span class="ot">&lt;-</span> <span class="fu">recode</span>(datos<span class="sc">$</span>FACTOR_MAS, <span class="st">`</span><span class="at">No</span><span class="st">`</span><span class="ot">=</span><span class="st">"NO"</span>, <span class="st">`</span><span class="at">DONANTE</span><span class="st">`</span><span class="ot">=</span><span class="st">"SI"</span>, <span class="st">`</span><span class="at">SEVERO</span><span class="st">`</span><span class="ot">=</span><span class="st">"SI"</span>, <span class="st">`</span><span class="at">SI Fragment</span><span class="st">`</span><span class="ot">=</span><span class="st">"SI"</span>, <span class="st">`</span><span class="at">SI LEVE</span><span class="st">`</span><span class="ot">=</span><span class="st">"SI"</span> )</span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>datos<span class="sc">$</span>FACTOR_FEM <span class="ot">&lt;-</span> <span class="fu">recode</span>(datos<span class="sc">$</span>FACTOR_FEM, <span class="st">`</span><span class="at">Edad</span><span class="st">`</span><span class="ot">=</span><span class="st">"BR"</span>, <span class="st">`</span><span class="at">EDAD/BR</span><span class="st">`</span><span class="ot">=</span><span class="st">"BR"</span>, <span class="st">`</span><span class="at">BR</span><span class="st">`</span><span class="ot">=</span><span class="st">"BR"</span>, <span class="st">`</span><span class="at">EDAD</span><span class="st">`</span><span class="ot">=</span><span class="st">"BR"</span>, <span class="st">`</span><span class="at">BR/EDAD</span><span class="st">`</span> <span class="ot">=</span> <span class="st">"BR"</span>, <span class="at">.default =</span> <span class="st">"ENDO"</span> )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+
+
+</section>
+</section>
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./est_descriptiva.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Estadística Descriptiva</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+</body></html>
